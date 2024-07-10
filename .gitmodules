@@ -5,3 +5,7 @@
 [submodule "utils"]
 	path = utils
 	url = /home/icto/rsw/NAV/standalone/utils
+
+[submodule "driver"]
+	path = driver
+	url = /home/icto/rsw/NAV/standalone/driver/
