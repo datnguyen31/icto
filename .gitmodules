@@ -9,3 +9,7 @@
 [submodule "driver"]
 	path = driver
 	url = /home/icto/rsw/NAV/standalone/driver/
+
+[submodule "algorithm"]
+	path = algorithm
+	url = /home/icto/rsw/NAV/standalone/algorithm/
