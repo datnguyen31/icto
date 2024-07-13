@@ -1,7 +1,3 @@
-[submodule "localization"]
-	path = localization
-	url = /home/icto/rsw/NAV/standalone/localization
-
 [submodule "utils"]
 	path = utils
 	url = /home/icto/rsw/NAV/standalone/utils
