@@ -13,3 +13,11 @@
 [submodule "algorithm"]
 	path = algorithm
 	url = /home/icto/rsw/NAV/standalone/algorithm/
+
+[submodule "modules/JLLT"]
+	path = modules/JLLT
+	url = ./modules/JLLT/
+
+[submodule "modules/JMMC"]
+	path = modules/JMMC
+	url = ./modules/JMMC/
