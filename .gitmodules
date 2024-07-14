@@ -1,22 +1,15 @@
-[submodule "utils"]
-	path = utils
-	url = https://github.com/datnguyen31/utils
-
 [submodule "driver"]
 	path = driver
 	url = https://github.com/datnguyen31/driver
-
-[submodule "algorithm"]
-	path = algorithm
-	url = https://github.com/datnguyen31/algorithm
-
 [submodule "modules/JLLT"]
 	path = modules/JLLT
 	url = https://github.com/datnguyen31/JLLT
-
 [submodule "modules/JMMC"]
 	path = modules/JMMC
 	url = https://github.com/datnguyen31/JMMC
 [submodule "ps"]
 	path = ps
 	url = https://github.com/datnguyen31/ps
+[submodule "modules/algorithm"]
+	path = modules/algorithm
+	url = https://github.com/datnguyen31/algorithm
