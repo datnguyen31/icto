@@ -1,19 +1,19 @@
 [submodule "utils"]
 	path = utils
-	url = /home/icto/rsw/NAV/standalone/utils
+	url = https://github.com/datnguyen31/utils
 
 [submodule "driver"]
 	path = driver
-	url = /home/icto/rsw/NAV/standalone/driver/
+	url = https://github.com/datnguyen31/driver
 
 [submodule "algorithm"]
 	path = algorithm
-	url = /home/icto/rsw/NAV/standalone/algorithm/
+	url = https://github.com/datnguyen31/algorithm
 
 [submodule "modules/JLLT"]
 	path = modules/JLLT
-	url = ./modules/JLLT/
+	url = https://github.com/datnguyen31/JLLT
 
 [submodule "modules/JMMC"]
 	path = modules/JMMC
-	url = ./modules/JMMC/
+	url = https://github.com/datnguyen31/JMMC
