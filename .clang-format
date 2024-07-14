@@ -1,9 +1,9 @@
 Language: Cpp
-IndentWidth: 0
-AccessModifierOffset: -4
-AlignAfterOpenBracket: Align
-AlignConsecutiveAssignments: true
-AlignConsecutiveDeclarations: true
+IndentWidth: 4
+AccessModifierOffset: 0
+AlignAfterOpenBracket: false
+AlignConsecutiveAssignments: false
+AlignConsecutiveDeclarations: false
 AlignEscapedNewlines: Left
 AlignOperands: true
 AlignTrailingComments: true
@@ -46,7 +46,7 @@ ExperimentalAutoDetectBinPacking: false
 ForEachMacros: []
 IndentCaseLabels: true
 IndentPPDirectives: None
-IndentWidth: 8
+IndentWidth: 4
 IndentWrappedFunctionNames: false
 KeepEmptyLinesAtTheStartOfBlocks: false
 MacroBlockBegin: ''
@@ -73,5 +73,5 @@ SpacesInCStyleCastParentheses: false
 SpacesInParentheses: false
 SpacesInSquareBrackets: false
 Standard: Cpp11
-TabWidth: 4
+TabWidth: 8
 UseTab: Never
