@@ -1,10 +1,10 @@
 Language: Cpp
 IndentWidth: 4
 AccessModifierOffset: 0
-AlignAfterOpenBracket: false
-AlignConsecutiveAssignments: false
-AlignConsecutiveDeclarations: false
-AlignEscapedNewlines: Left
+AlignAfterOpenBracket: true
+AlignConsecutiveAssignments: true
+AlignConsecutiveDeclarations: true
+AlignEscapedNewlines: Right
 AlignOperands: true
 AlignTrailingComments: true
 AllowAllParametersOfDeclarationOnNextLine: true
@@ -53,7 +53,7 @@ MacroBlockBegin: ''
 MacroBlockEnd: ''
 MaxEmptyLinesToKeep: 1
 NamespaceIndentation: None
-PointerAlignment: Right
+PointerAlignment: Left
 ReflowComments: false
 SortIncludes: true
 SortUsingDeclarations: true
