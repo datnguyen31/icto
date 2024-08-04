@@ -4,3 +4,5 @@ my_command
 /test/
 /artifact/
 /build/
+/doc/*.png
+/doc/*.dot
