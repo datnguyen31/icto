@@ -1,0 +1,35 @@
+Requirement ID: SH.01.001
+Indication: Parent
+Content: Build software platform for the rover using C++
+Parent: None
+Children: RSW.01.001.0002, RSW.01.001.0003, RSW.01.001.0004, RSW.01.001.0005
+Status: In progress
+
+Requirement ID: RSW.01.001.0002
+Indication: SH.01.001
+Content: Software platform must support multi-threading
+Parent: SH.01.001
+Children: None
+Status: In progress
+
+Requirement ID: RSW.01.001.0003
+Indication: SH.01.001
+Content: Software platform must support time management
+Parent: SH.01.001
+Children: None
+Status: In progress
+
+Requirement ID: RSW.01.001.0004
+Indication: SH.01.001
+Content: Software platform must support inter-thread communication
+Parent: SH.01.001
+Children: None
+Status: In progress
+
+Requirement ID: RSW.01.001.0005
+Indication: SH.01.001
+Content: Software platform must provide accessibility to hardware using kernel or self-developed driver
+Parent: SH.01.001
+Children: None
+Status: In progress
+
