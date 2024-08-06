@@ -2,7 +2,7 @@ Requirement ID: SH.01
 Indication: Parent
 Content: Build a planetary rover
 Parent: None
-Children: SH.01.002, SH.01.003, SH.01.004, SH.01.005, SH.01.006, SH.01.001
+Children: SH.01.001, SH.01.002, SH.01.003, SH.01.004, SH.01.005, SH.01.006
 Status: In progress
 
 Requirement ID: SH.01.001

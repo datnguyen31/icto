@@ -62,7 +62,11 @@ class RequirementManager:
         self.req_id_entry = ttk.Entry(input_frame, width=20)
         self.req_id_entry.grid(row=0, column=1, padx=5, pady=5, sticky=tk.W)
 
-        ttk.Label(input_frame, text="Parent/Child:").grid(row=0, column=2, padx=5, pady=5, sticky=tk.W)
+        # ttk.Label(input_frame, text="Parent/Child:").grid(row=0, column=2, padx=5, pady=5, sticky=tk.W)
+        # self.indication_var = tk.StringVar()
+        # ttk.Combobox(input_frame, textvariable=self.indication_var, values=["Parent", "Child"], width=18).grid(row=0, column=3, padx=5, pady=5, sticky=tk.W)
+
+        ttk.Label(input_frame, text="Parent:").grid(row=0, column=2, padx=5, pady=5, sticky=tk.W)
         self.indication_var = tk.StringVar()
         ttk.Combobox(input_frame, textvariable=self.indication_var, values=["Parent", "Child"], width=18).grid(row=0, column=3, padx=5, pady=5, sticky=tk.W)
 
@@ -110,17 +114,18 @@ class RequirementManager:
         main_frame.columnconfigure(0, weight=1)
         main_frame.rowconfigure(3, weight=1)
 
-        self.tree = ttk.Treeview(tree_frame, columns=("ID", "Indication", "Content", "Parent", "Status"), show="headings", style="Treeview")
+        # self.tree = ttk.Treeview(tree_frame, columns=("ID", "Indication", "Content", "Parent", "Status"), show="headings", style="Treeview")
+        self.tree = ttk.Treeview(tree_frame, columns=("ID", "Parent", "Content", "Status"), show="headings", style="Treeview")
         self.tree.heading("ID", text="ID")
-        self.tree.heading("Indication", text="Indication")
-        self.tree.heading("Content", text="Content")
         self.tree.heading("Parent", text="Parent")
+        self.tree.heading("Content", text="Content")
+        # self.tree.heading("Parent", text="Parent")
         self.tree.heading("Status", text="Status")
         
         self.tree.column("ID", width=100, anchor=tk.W)
-        self.tree.column("Indication", width=100, anchor=tk.W)
-        self.tree.column("Content", width=300, anchor=tk.W)
         self.tree.column("Parent", width=100, anchor=tk.W)
+        self.tree.column("Content", width=300, anchor=tk.W)
+        # self.tree.column("Parent", width=100, anchor=tk.W)
         self.tree.column("Status", width=100, anchor=tk.W)
 
         scrollbar = ttk.Scrollbar(tree_frame, orient="vertical", command=self.tree.yview)
@@ -236,8 +241,8 @@ class RequirementManager:
                 requirements = self.requirements
 
             for req in requirements:
-                indication_display = self.get_indication_display(req)
-                self.tree.insert("", "end", values=(req.req_id, indication_display, req.content, req.parent.req_id if req.parent else "", req.status))
+                parent_id = req.parent.req_id if req.parent else ""
+                self.tree.insert("", "end", values=(req.req_id, parent_id, req.content, req.status))
 
     def get_indication_display(self, req):
         if req.parent:
