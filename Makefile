@@ -10,7 +10,7 @@ OBSWBUILDDIR ?= $(CURDIR)/build
 PREP_OPTS := -DMISSION=$(MISSION)
 
 ifneq ($(VERBOSE),)
-PREP_OPTS += --trace
+	PREP_OPTS += --trace
 endif
 
 # The "LOCALTGTS" defines the top-level targets that are implemented in this makefile
@@ -18,18 +18,17 @@ endif
 LOCALTGTS := clean prep install
 OTHERTGTS := $(filter-out $(LOCALTGTS),$(MAKECMDGOALS))
 
+# As this makefile does not build any real files, treat everything as a PHONY target
+# This ensures that the rule gets executed even if a file by that name does exist
+.PHONY: $(LOCALTGTS) $(OTHERTGTS)
+
 clean:
-    # Use a tab here
-    rm -rf ${OBSWBUILDDIR}
+	rm -rf ${OBSWBUILDDIR}
 
 prep:
-    # Use a tab here
-    mkdir -p ${OBSWBUILDDIR}
-    # Use a tab here
-    cd ${MISSION} && cmake -B${OBSWBUILDDIR} -H. ${PREP_OPTS}
+	mkdir -p ${OBSWBUILDDIR}
+	cd ${MISSION} && cmake -B${OBSWBUILDDIR} -H. ${PREP_OPTS}
 
 install: 
-    # Use a tab here
-    ${MAKE} prep
-    # Use a tab here
-    cd ${OBSWBUILDDIR} && make install
+	${MAKE} prep
+	cd ${OBSWBUILDDIR} && make install
