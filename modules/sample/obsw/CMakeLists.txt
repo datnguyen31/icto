@@ -4,12 +4,10 @@ project(module_sample)
 # Set output directories
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/modules/sample/lib)
 
-# Add include directories
-include_directories(sample_inc
-                    mission/sample_version.hpp
-                    platform/sample_msgids.hpp
-                    platform/sample_platform.hpp
-                    src/sample_module.hpp
+include_directories(${PLATFORM_SERVICE_PATH}
+                    ${CMAKE_CURRENT_SOURCE_DIR}/mission
+                    ${CMAKE_CURRENT_SOURCE_DIR}/platform
+                    ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
 # Add source files
@@ -19,3 +17,6 @@ set(sample_src
 
 # Add library target
 add_library(module_sample SHARED ${sample_src})
+
+# Link the necessary libraries
+target_link_libraries(module_sample service_pms service_pts)
