@@ -1,8 +1,8 @@
 #include "../../../../ps/inc/platform_services.hpp"
 
+#include "../mission/sample_version.hpp"
 #include "../platform/sample_msgids.hpp"
 #include "../platform/sample_platform.hpp"
-#include "../mission/sample_version.hpp"
 
 #include <stdint.h>
 
