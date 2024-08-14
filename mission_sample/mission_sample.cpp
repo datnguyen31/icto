@@ -18,25 +18,26 @@ int main()
                          MISSION_SAMPLE_EPOCH_MINUTE, MISSION_SAMPLE_EPOCH_SECOND);
 
     // Load thread information from file
-    if (!MissionExecutive.loadThreadsFromFile("mission_modules.txt"))
+    if (!MissionExecutive.loadThreadsFromFile(MISSION_SAMPLE_THREAD_INFO))
     {
         std::cerr << "Failed to load threads from file" << std::endl;
         return 0;
     }
 
     // Create and start both threads
-    if (MissionExecutive.create("SampleModule"))
+    if (MissionExecutive.createAll())
     {
-        std::cout << "Thread1 created successfully" << std::endl;
+        std::cout << "Threads created successfully" << std::endl;
     }
     else
     {
-        std::cerr << "Failed to create Thread1" << std::endl;
+        std::cerr << "Failed to create threads" << std::endl;
+        return 0;
     }
-
+    
     while (1)
     {
-        std::this_thread::sleep_for(std::chrono::seconds(1));
+        std::this_thread::yield();
     }
 
     // Clean up
