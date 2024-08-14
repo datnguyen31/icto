@@ -3,6 +3,12 @@ project(mission_sample)
 
 add_definitions(-DMISSION=${MISSION})
 
+set(PLATFORM_SERVICE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../ps/inc)
+set(DRIVER_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../driver)
+
+# Add -fPIC flag
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
+
 # Set the installation prefix to the binary directory
 set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR})
 
@@ -73,3 +79,27 @@ add_custom_target(merge_archives ALL
 
 # Install the combined archive to the specified destination
 install(FILES ${CMAKE_BINARY_DIR}/combined/lib/libcombined.a DESTINATION lib)
+
+# Add the sample.cpp source file
+add_executable(mission_sample mission_sample.cpp)
+
+# Link the executable with libcombined.a and pthread
+target_link_libraries(mission_sample ${CMAKE_BINARY_DIR}/combined/lib/libcombined.a pthread dl g)
+
+set(MODULE_SO_FILES "")
+
+# Append .so files to the list
+foreach(MODULE ${MODULE_LIST})
+    list(APPEND MODULE_SO_FILES ${CMAKE_BINARY_DIR}/modules/${MODULE}/libmodule_${MODULE}.so)
+endforeach()
+
+# Create a custom target to copy all necessary files to ./build/exe
+add_custom_target(copy_files_to_exe ALL
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/exe
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/exe/nonvol
+    COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/mission_modules.txt ${CMAKE_BINARY_DIR}/exe/
+    COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:mission_sample> ${CMAKE_BINARY_DIR}/exe/
+    COMMAND ${CMAKE_COMMAND} -E copy ${MODULE_SO_FILES} ${CMAKE_BINARY_DIR}/exe/nonvol
+    DEPENDS mission_sample merge_archives ${MODULE_SO_FILES}
+    COMMENT "Copying .so files, executable, and mission_modules.txt to ./build/exe"
+)
