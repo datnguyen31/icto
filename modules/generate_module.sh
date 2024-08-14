@@ -13,32 +13,26 @@ NEW_DIR=${INPUT_NAME}
 # Copy the template directory to the new directory
 cp -r "$TEMPLATE_DIR" "$NEW_DIR"
 
-# Function to replace text in files
-replace_text() {
-    local file=$1
+# Find all files in the new directory and replace text
+find "$NEW_DIR" -type f -exec bash -c '
+    file="$1"
+    INPUT_NAME="$2"
     sed -i "s/sample/${INPUT_NAME,,}/g" "$file"
     sed -i "s/Sample/${INPUT_NAME^}/g" "$file"
     sed -i "s/SAMPLE/${INPUT_NAME^^}/g" "$file"
-}
+' _ {} "$INPUT_NAME" \;
 
-# Function to rename files and directories
-rename_files() {
-    local path=$1
-    local new_path=$(echo "$path" | sed "s/sample/${INPUT_NAME,,}/g" | sed "s/Sample/${INPUT_NAME^}/g" | sed "s/SAMPLE/${INPUT_NAME^^}/g")
+# Find all files and directories in the new directory and rename them
+find "$NEW_DIR" -depth -exec bash -c '
+    path="$1"
+    INPUT_NAME="$2"
+    new_path=$(echo "$path" | sed "s/sample/${INPUT_NAME,,}/g" | sed "s/Sample/${INPUT_NAME^}/g" | sed "s/SAMPLE/${INPUT_NAME^^}/g")
     if [ "$path" != "$new_path" ]; then
         mv "$path" "$new_path"
     fi
-}
+' _ {} "$INPUT_NAME" \;
 
-# Export the functions and variable for use with find
-export -f replace_text
-export -f rename_files
-export INPUT_NAME
-
-# Find all files in the new directory and replace text
-find "$NEW_DIR" -type f -exec bash -c 'replace_text "$0"' {} \;
-
-# Find all files and directories in the new directory and rename them
-find "$NEW_DIR" -depth -exec bash -c 'rename_files "$0"' {} \;
+# Remove any empty directories that may have been created
+find "$NEW_DIR" -type d -empty -delete
 
 echo "Template directory copied, indicators replaced, and files renamed successfully."
