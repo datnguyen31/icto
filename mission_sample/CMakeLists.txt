@@ -1,3 +1,8 @@
+cmake_minimum_required(VERSION 3.5.0)
+project(mission_sample)
+
+add_definitions(-DMISSION=${MISSION})
+
 # Set the installation prefix to the binary directory
 set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR})
 
@@ -21,6 +26,14 @@ foreach(SERVICE ${PLATFORM_SERVICE_LIST})
     add_subdirectory(../ps/${SERVICE} ${CMAKE_BINARY_DIR}/service/${SERVICE})
     # Append the service target name to the ALL_TARGETS list
     list(APPEND ALL_TARGETS service_${SERVICE})
+endforeach()
+
+# Loop through each module defined in MODULE_LIST
+foreach(MODULE ${MODULE_LIST})
+    # Add the subdirectory for each module and specify the binary directory for the build
+    add_subdirectory(../modules/${MODULE}/obsw ${CMAKE_BINARY_DIR}/modules/${MODULE})
+    # Append the module target name to the ALL_TARGETS list
+    list(APPEND ALL_TARGETS module_${MODULE})
 endforeach()
 
 # Initialize a variable to store all archive file paths
