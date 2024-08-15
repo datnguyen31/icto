@@ -2,6 +2,7 @@
 # Top Level Mission Makefile
 #
 MISSION ?= mission_sample
+TOOLCHAIN ?= x86_64-linux
 OBSWBUILDDIR ?= $(CURDIR)/build
 
 # The "prep" step requires extra options that are specified via environment variables.
@@ -27,7 +28,7 @@ clean:
 
 prep:
 	mkdir -p ${OBSWBUILDDIR}
-	cd ${MISSION} && cmake -B${OBSWBUILDDIR} -H. ${PREP_OPTS}
+	cd ${MISSION} && cmake -B${OBSWBUILDDIR} -H. ${PREP_OPTS} -DCMAKE_TOOLCHAIN_FILE=../${MISSION}/toolchain-${TOOLCHAIN}.cmake
 
 install: 
 	${MAKE} prep
