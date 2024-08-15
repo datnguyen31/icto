@@ -6,3 +6,5 @@ my_command
 /build/
 /doc/*.png
 /doc/*.dot
+
+/modules/laboratory
