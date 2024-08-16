@@ -13,9 +13,9 @@ int main()
 
     // Create an instance of the TimeService
     TimeService& MissionTime = TimeService::getInstance();
-    MissionTime.setEpoch(MISSION_JOSE_EPOCH_YEAR, MISSION_JOSE_EPOCH_MONTH,
-                         MISSION_JOSE_EPOCH_DAY, MISSION_JOSE_EPOCH_HOUR,
-                         MISSION_JOSE_EPOCH_MINUTE, MISSION_JOSE_EPOCH_SECOND);
+    MissionTime.setEpoch(MISSION_JOSE_EPOCH_YEAR, MISSION_JOSE_EPOCH_MONTH, MISSION_JOSE_EPOCH_DAY,
+                         MISSION_JOSE_EPOCH_HOUR, MISSION_JOSE_EPOCH_MINUTE,
+                         MISSION_JOSE_EPOCH_SECOND);
 
     // Load thread information from file
     if (!MissionExecutive.loadThreadsFromFile(MISSION_JOSE_THREAD_INFO))
@@ -24,7 +24,7 @@ int main()
         return 0;
     }
 
-    if(MissionExecutive.createAll())
+    if (MissionExecutive.createAll())
     {
         std::cout << "All threads created successfully" << std::endl;
     }
