@@ -1,5 +1,5 @@
 # Define the list of target drivers
-set(TARGET_DRIVER_LIST linuxI2C bno055)
+set(TARGET_DRIVER_LIST math linuxI2C bno055 navigation)
 
 # Define the list of platform services
 set(PLATFORM_SERVICE_LIST pes pms pts)
