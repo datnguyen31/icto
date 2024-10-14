@@ -5,6 +5,11 @@ add_definitions(-DMISSION=${MISSION})
 
 set(PLATFORM_SERVICE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../ps/inc)
 set(DRIVER_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../driver)
+set(MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../modules)
+set(OS_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../os)
+
+# Set POSIX as the default platform
+set(USE_POSIX ON)
 
 # Set the POSITION_INDEPENDENT_CODE property globally
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
@@ -45,8 +50,15 @@ foreach(MODULE ${MODULE_LIST})
     list(APPEND ALL_TARGETS module_${MODULE})
 endforeach()
 
+# Add the OS directory
+add_subdirectory(${OS_PATH} ${CMAKE_BINARY_DIR}/os)
+list(APPEND ALL_TARGETS os)
+
 # Initialize a variable to store all archive file paths
 set(ALL_ARCHIVES "")
+
+# Append the path to the OS archive to the ALL_ARCHIVES list
+list(APPEND ALL_ARCHIVES ${CMAKE_BINARY_DIR}/os/lib/libos.a)
 
 # Collect all archive files from the driver targets
 foreach(DRIVER ${TARGET_DRIVER_LIST})

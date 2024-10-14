@@ -13,3 +13,6 @@
 [submodule "modules/algorithm"]
 	path = modules/algorithm
 	url = https://github.com/datnguyen31/algorithm
+[submodule "os"]
+	path = os
+	url = https://github.com/datnguyen31/os
