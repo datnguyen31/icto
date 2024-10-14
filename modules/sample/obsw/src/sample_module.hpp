@@ -12,7 +12,7 @@ namespace Modules
 {
 class SampleModule
 {
-    public:
+  public:
     struct Housekeeping
     {
         uint32_t loopCtr;
@@ -23,7 +23,7 @@ class SampleModule
     Message    HkMsg;
     uint32_t   loopCtr;
 
-    public:
+  public:
     SampleModule();
 
     int32_t init();

@@ -13,9 +13,8 @@ int main()
 
     // Create an instance of the TimeService
     TimeService& MissionTime = TimeService::getInstance();
-    MissionTime.setEpoch(MISSION_SAMPLE_EPOCH_YEAR, MISSION_SAMPLE_EPOCH_MONTH,
-                         MISSION_SAMPLE_EPOCH_DAY, MISSION_SAMPLE_EPOCH_HOUR,
-                         MISSION_SAMPLE_EPOCH_MINUTE, MISSION_SAMPLE_EPOCH_SECOND);
+    MissionTime.setEpoch(MISSION_SAMPLE_EPOCH_YEAR, MISSION_SAMPLE_EPOCH_MONTH, MISSION_SAMPLE_EPOCH_DAY,
+                         MISSION_SAMPLE_EPOCH_HOUR, MISSION_SAMPLE_EPOCH_MINUTE, MISSION_SAMPLE_EPOCH_SECOND);
 
     // Load thread information from file
     if (!MissionExecutive.loadThreadsFromFile(MISSION_SAMPLE_THREAD_INFO))
@@ -34,7 +33,7 @@ int main()
         std::cerr << "Failed to create threads" << std::endl;
         return 0;
     }
-    
+
     while (1)
     {
         std::this_thread::yield();

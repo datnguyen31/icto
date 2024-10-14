@@ -6,8 +6,7 @@ using namespace PlatformServices;
 
 using namespace Modules;
 
-SampleModule::SampleModule()
-    : loopCtr(0), MsgPipe(10), HkMsg(0, "", nullptr, 0), receivedMsg(0, "", nullptr, 0)
+SampleModule::SampleModule() : loopCtr(0), MsgPipe(10), HkMsg(0, "", nullptr, 0), receivedMsg(0, "", nullptr, 0)
 {
     // Initialize housekeeping message
     HkMsg.header.messageId = SAMPLE_HOUSEKEEPING_MSGID;
