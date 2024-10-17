@@ -5,9 +5,17 @@ add_definitions(-DMISSION=${MISSION})
 
 set(PLATFORM_SERVICE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../ps/inc)
 set(DRIVER_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../driver)
+set(MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../modules)
+set(OS_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../os)
 
-# Add -fPIC flag
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
+# Set POSIX as the default platform
+set(USE_POSIX ON)
+
+# Set the POSITION_INDEPENDENT_CODE property globally
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
+# Disable optimizations and prevent inlining
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 -fno-inline -fvisibility=default -g")
 
 # Set the installation prefix to the binary directory
 set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR})
@@ -42,8 +50,15 @@ foreach(MODULE ${MODULE_LIST})
     list(APPEND ALL_TARGETS module_${MODULE})
 endforeach()
 
+# Add the OS directory
+add_subdirectory(${OS_PATH} ${CMAKE_BINARY_DIR}/os)
+list(APPEND ALL_TARGETS os)
+
 # Initialize a variable to store all archive file paths
 set(ALL_ARCHIVES "")
+
+# Append the path to the OS archive to the ALL_ARCHIVES list
+list(APPEND ALL_ARCHIVES ${CMAKE_BINARY_DIR}/os/lib/libos.a)
 
 # Collect all archive files from the driver targets
 foreach(DRIVER ${TARGET_DRIVER_LIST})
@@ -80,11 +95,16 @@ add_custom_target(merge_archives ALL
 # Install the combined archive to the specified destination
 install(FILES ${CMAKE_BINARY_DIR}/combined/lib/libcombined.a DESTINATION lib)
 
-# Add the sample.cpp source file
+# Add the jose.cpp source file
 add_executable(mission_sample mission_sample.cpp)
 
-# Link the executable with libcombined.a and pthread
-target_link_libraries(mission_sample ${CMAKE_BINARY_DIR}/combined/lib/libcombined.a pthread dl g)
+# Link the executable with libcombined.a and pthread, and prevent garbage collection of sections
+target_link_libraries(mission_sample 
+    -Wl,--whole-archive ${CMAKE_BINARY_DIR}/combined/lib/libcombined.a -Wl,--no-whole-archive 
+    -Wl,--no-gc-sections
+    -Wl,--export-dynamic
+    pthread dl g
+)
 
 set(MODULE_SO_FILES "")
 

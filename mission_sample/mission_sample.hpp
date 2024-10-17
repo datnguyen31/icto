@@ -6,14 +6,14 @@
 #define MISSION_SAMPLE_THREAD_INFO "mission_modules.txt"
 
 /**
- * @brief Version of the mission sample
+ * @brief Version of the mission jose
  */
 #define MISSION_SAMPLE_MAJOR_VERSION 1
-#define MISSION_SAMPLE_MINOR_VERSION 0
+#define MISSION_SAMPLE_MINOR_VERSION 1
 #define MISSION_SAMPLE_LOCAL_VERSION 0
 
 /**
- * @brief Epoch of the mission sample
+ * @brief Epoch of the mission jose
  */
 #define MISSION_SAMPLE_EPOCH_YEAR   2024
 #define MISSION_SAMPLE_EPOCH_MONTH  31

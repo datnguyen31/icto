@@ -1,1 +1,1 @@
-#define DEBUG_PRINT
+#define FOR_DEBUG

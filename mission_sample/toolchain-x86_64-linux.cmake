@@ -2,6 +2,9 @@
 set(CMAKE_SYSTEM_NAME Linux)
 set(CMAKE_SYSTEM_PROCESSOR x86_64)
 
+set(USE_LINUX ON)
+set(USE_POSIX ON)
+
 # Specify the path to the cross-compilation tools
 set(TOOLCHAIN_PATH /usr/bin)
 
