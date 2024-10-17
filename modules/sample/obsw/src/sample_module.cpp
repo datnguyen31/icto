@@ -6,32 +6,30 @@ using namespace PlatformServices;
 
 using namespace Modules;
 
-SampleModule::SampleModule() : loopCtr(0), MsgPipe(10), HkMsg(0, "", nullptr, 0), receivedMsg(0, "", nullptr, 0)
+SampleModule::SampleModule() : MsgPipe(10), HkMsg(0, "", nullptr, 0), receivedMsg(0, "", nullptr, 0)
 {
     // Initialize housekeeping message
     HkMsg.header.messageId = SAMPLE_HOUSEKEEPING_MSGID;
     HkMsg.header.sender    = "SampleModule";
-    HkMsg.data             = new Housekeeping;
-    HkMsg.header.dataSize  = sizeof(Housekeeping);
+    HkMsg.data             = new Housekeeping_t;
+    HkMsg.header.dataSize  = sizeof(Housekeeping_t);
 
-    // Initialize received message
-    receivedMsg.header.messageId = 0;
-    receivedMsg.header.sender    = "";
-    receivedMsg.data             = nullptr;
-    receivedMsg.header.dataSize  = 0;
+    this->setState(ModuleState_t::MODULE_INITIALIZED);
 }
 
-int32_t SampleModule::init()
+int32_t SampleModule::init(void)
 {
     // Subscribe to messages from Thread 2
     MsgPipe.subscribe(2);
 
+    this->setState(ModuleState_t::MODULE_RUNNING);
+
     return 0;
 }
 
-int32_t SampleModule::execute()
+int32_t SampleModule::execute(void)
 {
-    while (true)
+    while (loopExamine() == ModuleState_t::MODULE_RUNNING)
     {
         if (MsgPipe.rcevMsg(receivedMsg, SAMPLE_MSG_DELAY_MS))
         { // Wait up to 1 second for a response
@@ -45,10 +43,9 @@ int32_t SampleModule::execute()
             }
         }
 
-#ifdef DEBUG_PRINT
-        std::cout << "SampleModule loopCtr: " << loopCtr << std::endl;
+#ifdef FOR_DEBUG
+        std::cout << "SampleModule loopCtr: " << getLoopCtr() << std::endl;
 #endif
-        loopCtr++;
     }
 
     return 0;

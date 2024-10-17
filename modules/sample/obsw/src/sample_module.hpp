@@ -4,16 +4,14 @@
 #include "../platform/sample_msgids.hpp"
 #include "../platform/sample_platform.hpp"
 
-#include <stdint.h>
-
 using namespace PlatformServices;
 
 namespace Modules
 {
-class SampleModule
+class SampleModule : public ModuleMaker
 {
   public:
-    struct Housekeeping
+    struct Housekeeping_t
     {
         uint32_t loopCtr;
     };
@@ -21,12 +19,11 @@ class SampleModule
     Subscriber MsgPipe;
     Message    receivedMsg;
     Message    HkMsg;
-    uint32_t   loopCtr;
 
   public:
     SampleModule();
 
-    int32_t init();
-    int32_t execute();
+    int32_t init(void);
+    int32_t execute(void);
 };
 } // namespace Modules
