@@ -1,0 +1,5 @@
+#pragma once
+
+#define JOHN_MSGID_BASE         0x000000A0
+#define JOHN_HOUSEKEEPING_MSGID (JOHN_MSGID_BASE + 0)
+#define JOHN_CUSTOM_MSGID       (JOHN_MSGID_BASE + 1)

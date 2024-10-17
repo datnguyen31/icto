@@ -1,0 +1,5 @@
+#pragma once
+
+#define MARRY_MSGID_BASE         0x000000B0
+#define MARRY_HOUSEKEEPING_MSGID (MARRY_MSGID_BASE + 0)
+#define MARRY_CUSTOM_MSGID       (MARRY_MSGID_BASE + 1)

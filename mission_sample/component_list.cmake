@@ -5,4 +5,4 @@ set(TARGET_DRIVER_LIST )
 set(PLATFORM_SERVICE_LIST pes pms pts pmm)
 
 # Define the list of modules (not used in the provided CMakeLists.txt)
-set(MODULE_LIST sample)
+set(MODULE_LIST sample john marry)
