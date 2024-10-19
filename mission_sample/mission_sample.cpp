@@ -9,7 +9,7 @@ using namespace PlatformServices;
 int main()
 {
     // Create an instance of the MissionExecutive
-    Executive MissionExecutive;
+    Executive& MissionExecutive = Executive::getInstance();
 
     // Create an instance of the TimeService
     TimeService& MissionTime = TimeService::getInstance();
@@ -30,8 +30,7 @@ int main()
     }
     else
     {
-        std::cerr << "Failed to create threads" << std::endl;
-        return 0;
+        std::cerr << "Failed to create a thread" << std::endl;
     }
 
     while (1)

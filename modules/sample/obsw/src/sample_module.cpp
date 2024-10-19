@@ -53,11 +53,27 @@ int32_t SampleModule::execute(void)
 
 extern "C"
 {
+    void* SAMPLE_ChildTask(void* arg)
+    {
+        while(true)
+        {
+            std::cout << "Child task running" << std::endl;
+            std::this_thread::sleep_for(std::chrono::seconds(1));
+        }
+    }
+}
+
+extern "C"
+{
     void SAMPLE_ModuleEntry(void)
     {
         SampleModule sampleModule;
 
         sampleModule.init();
+
+        Executive &MissionExecutive = Executive::getInstance();
+        MissionExecutive.createChildTask("SampleModule", SAMPLE_ChildTask, nullptr);
+        
         sampleModule.execute();
     }
 }
