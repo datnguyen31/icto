@@ -2,14 +2,6 @@
 	path = driver
 	url = https://github.com/datnguyen31/driver
 	branch = master
-[submodule "modules/JLLT"]
-	path = modules/JLLT
-	url = https://github.com/datnguyen31/JLLT
-	branch = master
-[submodule "modules/JMMC"]
-	path = modules/JMMC
-	url = https://github.com/datnguyen31/JMMC
-	branch = master
 [submodule "ps"]
 	path = ps
 	url = https://github.com/datnguyen31/ps
@@ -17,4 +9,8 @@
 [submodule "os"]
 	path = os
 	url = https://github.com/datnguyen31/os
+	branch = master
+[submodule "modules/JMMS"]
+	path = modules/JMMS
+	url = https://github.com/datnguyen31/JMMS
 	branch = master
