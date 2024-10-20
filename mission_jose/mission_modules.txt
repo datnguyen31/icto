@@ -1,1 +1,1 @@
-LaboratoryModule,nonvol/libmodule_laboratory.so,LABORATORY_ModuleEntry,16384,1
+JmmsModule,nonvol/libmodule_jmms.so,JMMS_ModuleEntry,16384,1

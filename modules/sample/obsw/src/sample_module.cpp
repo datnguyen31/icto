@@ -6,7 +6,18 @@ using namespace PlatformServices;
 
 using namespace Modules;
 
-SampleModule::SampleModule() : MsgPipe(10), HkMsg(0, "", nullptr, 0), receivedMsg(0, "", nullptr, 0)
+SampleModule::SampleModule() : ModuleMaker(), HkMsg(0, "", nullptr, 0), receivedMsg(0, "", nullptr, 0)
+{
+    // Initialize housekeeping message
+    HkMsg.header.messageId = SAMPLE_HOUSEKEEPING_MSGID;
+    HkMsg.header.sender    = "SampleModule";
+    HkMsg.data             = new Housekeeping_t;
+    HkMsg.header.dataSize  = sizeof(Housekeeping_t);
+
+    this->setState(ModuleState_t::MODULE_INITIALIZED);
+}
+
+SampleModule::SampleModule(const std::string moduleName, size_t queueSize) : ModuleMaker(moduleName, queueSize), HkMsg(0, "", nullptr, 0), receivedMsg(0, "", nullptr, 0)
 {
     // Initialize housekeeping message
     HkMsg.header.messageId = SAMPLE_HOUSEKEEPING_MSGID;
@@ -67,7 +78,7 @@ extern "C"
 {
     void SAMPLE_ModuleEntry(void)
     {
-        SampleModule sampleModule;
+        SampleModule sampleModule(SAMPLE_MODULE_NAME, SAMPLE_MODULE_PIPE_LENGTH);
 
         sampleModule.init();
 

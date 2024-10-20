@@ -9,7 +9,7 @@ using namespace PlatformServices;
 int main()
 {
     // Create an instance of the MissionExecutive
-    Executive MissionExecutive;
+    Executive& MissionExecutive = Executive::getInstance();
 
     // Create an instance of the TimeService
     TimeService& MissionTime = TimeService::getInstance();
