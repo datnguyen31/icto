@@ -9,3 +9,5 @@ my_command
 /doc/*.dot
 
 /modules/laboratory
+
+mission_test/

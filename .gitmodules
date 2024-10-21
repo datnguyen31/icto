@@ -17,3 +17,6 @@
 [submodule "modules/jmms"]
 	path = modules/jmms
 	url = https://github.com/datnguyen31/jmms
+[submodule "modules/jmpc"]
+	path = modules/jmpc
+	url = https://github.com/datnguyen31/jmpc
