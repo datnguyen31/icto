@@ -1,1 +1,2 @@
 JmmsModule,nonvol/libmodule_jmms.so,JMMS_ModuleEntry,16384,1
+SampleModule,nonvol/libmodule_sample.so,SAMPLE_ModuleEntry,16384,1

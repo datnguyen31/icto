@@ -15,7 +15,7 @@ set(USE_POSIX ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 # Disable optimizations and prevent inlining
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 -fno-inline -fvisibility=default")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 -fno-inline -fvisibility=default -g")
 
 # Set the installation prefix to the binary directory
 set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR})
