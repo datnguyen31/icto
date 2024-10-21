@@ -31,7 +31,8 @@ SampleModule::SampleModule(const std::string moduleName, size_t queueSize) : Mod
 int32_t SampleModule::init(void)
 {
     // Subscribe to messages from Thread 2
-    MsgPipe.subscribe(2);
+    MsgPipe.subscribe(0x1AB1);
+    MsgPipe.subscribe(0x1AB2);
 
     this->setState(ModuleState_t::MODULE_RUNNING);
 
@@ -46,8 +47,12 @@ int32_t SampleModule::execute(void)
         { // Wait up to 1 second for a response
             switch (receivedMsg.header.messageId)
             {
-                case 2:
+                case 0x1AB1:
                     // Process received message
+                    DBG_PRINT("Received message 0x1AB1\n");
+                    break;
+                case 0x1AB2:
+                    DBG_PRINT("Received message 0x1AB2\n");
                     break;
                 default:
                     break;
