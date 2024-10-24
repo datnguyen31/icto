@@ -20,3 +20,6 @@
 [submodule "modules/jmpc"]
 	path = modules/jmpc
 	url = https://github.com/datnguyen31/jmpc
+[submodule "modules/jnav"]
+	path = modules/jnav
+	url = https://github.com/datnguyen31/jnav
